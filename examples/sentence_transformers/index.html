@@ -401,6 +401,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scheduling/" class="md-nav__link">
+        Scheduling Embedding Updates
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -481,8 +495,9 @@
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="ss">&quot;table&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;products&#39;</span><span class="p">,</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">primary_key</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;product_id&#39;</span><span class="p">,</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">columns</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">ARRAY</span><span class="p">[</span><span class="s1">&#39;product_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">transformer</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;sentence-transformers/multi-qa-MiniLM-L6-dot-v1&#39;</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">transformer</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;sentence-transformers/multi-qa-MiniLM-L6-dot-v1&#39;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">scheduler</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;realtime&#39;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">);</span>
 </span></code></pre></div>
 <p>This adds a new column to your table, in our case it is named <code>product_search_embeddings</code>, then populates that data with the transformed embeddings from the <code>product_name</code> and <code>description</code> columns.</p>
 <p>Then search,</p>

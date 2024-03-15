@@ -471,6 +471,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/scheduling/" class="md-nav__link">
+        Scheduling Embedding Updates
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -585,8 +599,8 @@
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="ss">&quot;update_col&quot;</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;last_updated_at&#39;</span><span class="p">,</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="ss">&quot;transformer&quot;</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;text-embedding-ada-002&#39;</span><span class="p">,</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="ss">&quot;search_alg&quot;</span><span class="w"> </span><span class="n">vectorize</span><span class="p">.</span><span class="n">SimilarityAlg</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;pgv_cosine_similarity&#39;</span><span class="p">,</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="ss">&quot;table_method&quot;</span><span class="w"> </span><span class="n">vectorize</span><span class="p">.</span><span class="n">TableMethod</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;append&#39;</span><span class="p">,</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="ss">&quot;schedule&quot;</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;realtime&#39;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="ss">&quot;table_method&quot;</span><span class="w"> </span><span class="n">vectorize</span><span class="p">.</span><span class="n">TableMethod</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="ss">&quot;schedule&quot;</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;* * * * *&#39;</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">)</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">TEXT</span>
 </span></code></pre></div>
 <table>
@@ -646,12 +660,12 @@
 <tr>
 <td style="text-align: left;">table_method</td>
 <td style="text-align: left;">TableMethod</td>
-<td style="text-align: left;">The method to use for the table. Defaults to 'append', which adds a column to the existing table.</td>
+<td style="text-align: left;"><code>join</code> to store embeddings in a new table in the vectorize schema. <code>append</code> to create columns for embeddings on the source table. Defaults to <code>join</code>.</td>
 </tr>
 <tr>
 <td style="text-align: left;">schedule</td>
 <td style="text-align: left;">text</td>
-<td style="text-align: left;">'realtime' by default for trigger based updates. accepts a cron-like input for a cron based updates.</td>
+<td style="text-align: left;">Accepts a cron-like input for a cron based updates. Or <code>realtime</code> to set up a trigger.</td>
 </tr>
 </tbody>
 </table>

@@ -274,15 +274,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger-based-updates" class="md-nav__link">
-    Trigger based updates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#try-it-on-tembo-cloud" class="md-nav__link">
-    Try it on Tembo Cloud
+  <a href="#updating-embeddings" class="md-nav__link">
+    Updating Embeddings
   </a>
   
 </li>
@@ -467,6 +460,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/scheduling/" class="md-nav__link">
+        Scheduling Embedding Updates
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -541,15 +548,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger-based-updates" class="md-nav__link">
-    Trigger based updates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#try-it-on-tembo-cloud" class="md-nav__link">
-    Try it on Tembo Cloud
+  <a href="#updating-embeddings" class="md-nav__link">
+    Updating Embeddings
   </a>
   
 </li>
@@ -584,7 +584,9 @@
 <p>This project relies heavily on the work by <a href="https://github.com/pgvector/pgvector">pgvector</a> for vector similarity search, <a href="https://github.com/tembo-io/pgmq">pgmq</a> for orchestration in background workers, and <a href="https://huggingface.co/sentence-transformers">SentenceTransformers</a>.</p>
 <hr />
 <p><a href="https://join.slack.com/t/tembocommunity/shared_invite/zt-277pu7chi-NHtvHWvLhHwyK0Y5Y6vTPw"><img alt="Static Badge" src="https://img.shields.io/badge/%40tembo-community?logo=slack&amp;label=slack" /></a>
-<a href="https://pgxn.org/dist/vectorize/"><img alt="PGXN version" src="https://badge.fury.io/pg/vectorize.svg" /></a></p>
+<a href="https://pgxn.org/dist/vectorize/"><img alt="PGXN version" src="https://badge.fury.io/pg/vectorize.svg" /></a>
+<a href="https://ossrank.com/p/3815"><img alt="OSSRank" src="https://shields.io/endpoint?url=https://ossrank.com/shield/3815" /></a></p>
+<p>pg_vectorize powers the VectorDB Stack on Tembo Cloud. </p>
 <p><strong>API Documentation</strong>: https://tembo-io.github.io/pg_vectorize/</p>
 <p><strong>Source</strong>: https://github.com/tembo-io/pg_vectorize</p>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
@@ -601,7 +603,7 @@
 <li><a href="#installation">Installation</a></li>
 <li><a href="#vector-search-example">Vector Search Example</a></li>
 <li><a href="#rag-example">RAG Example</a></li>
-<li><a href="#trigger-based-updates">Trigger based updates</a></li>
+<li><a href="#updating-embeddings">Updating Embeddings</a></li>
 <li><a href="#try-it-on-tembo-cloud">Try it on Tembo Cloud</a></li>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
@@ -667,8 +669,9 @@ And if you're running the vector-serve container, set the following url as a con
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="ss">&quot;table&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;products&#39;</span><span class="p">,</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">primary_key</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;product_id&#39;</span><span class="p">,</span>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">columns</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">ARRAY</span><span class="p">[</span><span class="s1">&#39;product_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">transformer</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;sentence-transformers/multi-qa-MiniLM-L6-dot-v1&#39;</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">);</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">transformer</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;sentence-transformers/multi-qa-MiniLM-L6-dot-v1&#39;</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="n">schedule</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;realtime&#39;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">);</span>
 </span></code></pre></div>
 <p>This adds a new column to your table, in our case it is named <code>product_search_embeddings</code>, then populates that data with the transformed embeddings from the <code>product_name</code> and <code>description</code> columns.</p>
 <p>Then search,</p>
@@ -716,8 +719,11 @@ And if you're running the vector-serve container, set the following url as a con
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>&quot;A pencil is an item that is commonly used for writing and is known to be most effective on paper.&quot;
 </span></code></pre></div>
-<h2 id="trigger-based-updates">Trigger based updates<a class="headerlink" href="#trigger-based-updates" title="Permanent link">&para;</a></h2>
-<p>When vectorize job is set up as <code>realtime</code> (the default behavior, via <code>vectorize.table(..., schedule =&gt; 'realtime')</code>), vectorize will create triggers on your table that will keep your embeddings up to date. When the text inputs are updated or if new rows are inserted, the triggers handle creating a background job that updates the embeddings. Since the transformation is executed in a background job and the transformer model is invoked in a separate container, there is minimal impact on the performance of the update or insert statement.</p>
+<h2 id="updating-embeddings">Updating Embeddings<a class="headerlink" href="#updating-embeddings" title="Permanent link">&para;</a></h2>
+<p>When the source text data is updated, how and when the embeddings are updated is determined by the value set to the <code>schedule</code> parameter in <code>vectorize.table</code> and <code>vectorize.init_rag</code>.</p>
+<p>The default behavior is <code>schedule =&gt; '* * * * *'</code>, which means the background worker process checks for changes every minute, and updates the embeddings accordingly. This method requires setting the <code>updated_at_col</code> value to point to a colum on the table indicating the time that the input text columns were last changed. <code>schedule</code> can be set to any cron-like value.</p>
+<p>Alternatively, <code>schedule =&gt; 'realtime</code> creates triggers on the source table and updates embeddings anytime new records are inserted to the source table or existing records are updated.</p>
+<p>Statements below would will result in new embeddings being generated either immediately (<code>schedule =&gt; 'realtime'</code>) or within the cron schedule set in the <code>schedule</code> parameter.</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">)</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dish of Italian origin consisting of a flattened disk of bread&#39;</span><span class="p">);</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
@@ -725,8 +731,6 @@ And if you're running the vector-serve container, set the following url as a con
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">SET</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sling made of fabric, rope, or netting, suspended between two or more points, used for swinging, sleeping, or resting&#39;</span>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">product_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hammock&#39;</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="try-it-on-tembo-cloud">Try it on Tembo Cloud<a class="headerlink" href="#try-it-on-tembo-cloud" title="Permanent link">&para;</a></h2>
-<p>Try it for yourself! Install with a single click on a Vector DB Stack (or any other instance) in <a href="https://cloud.tembo.io/">Tembo Cloud</a> today.</p>
                 
               
               
